@@ -42,7 +42,7 @@ function addProducts({ setShowProductsAddPage }) {
     console.log(formData.get("itemCount"))
     Axios({
       method: "post",
-      url: `http://localhost:4000/addProduct/${user.id}`,
+      url: `/addProduct/${user.id}`,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     }).then((response) => {

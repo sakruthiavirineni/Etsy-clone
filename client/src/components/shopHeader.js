@@ -6,7 +6,7 @@ import { selectUser } from "../features/userSlice";
 // import EditShop from "./ShopDetails/editShop";
 import EditShopImage from "./products/editShopImage";
 import logo from './avatar.png';
-import img1 from '../Images/pic1.jpeg'
+import img1 from '../Images/shop1.jpeg'
 function shopHeader() {
   const user = useSelector(selectUser);
   const product = useSelector(getProducts);
@@ -19,7 +19,7 @@ function shopHeader() {
   const [prodUserId, setProdUserId] = useState(0);
 
   useEffect(() => {
-    Axios.get("http://localhost:4000/getShopById/" + user.id).then(
+    Axios.get("/getShopById/" + user.id).then(
       (response) => {
         if (response.data.success) {
           // setShop(response.data.result);

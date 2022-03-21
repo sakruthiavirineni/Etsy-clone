@@ -49,7 +49,13 @@ const CartScreen = () => {
 
   const handleCheckOut = () => {
     let obj = JSON.parse(localStorage.getItem( "purchase" ));
+    if( obj != null)
+    {
     localStorage.setItem("purchase", JSON.stringify(obj.concat(finalCartProducts)));
+    }
+    else{
+      localStorage.setItem("purchase", JSON.stringify(finalCartProducts));
+    }
     window.location.pathname = "/purchase";
 
     // Axios.post("http://localhost:4000/addCartProduct/" + user.id, {
@@ -63,6 +69,16 @@ const CartScreen = () => {
     //   }
     // });
     // window.localStorage("purchase" + user.id, {});
+alert('sunny'+ finalCartProducts.length);
+    finalCartProducts.map((product) =>{
+      Axios.post(`/editCount/${product.itemId}`,{quantity:product.qty})
+      .then((response)=>{
+        console.log(response);
+      }).catch((err)=>{
+        console.log(err);
+      })
+    })
+
   };
 
   return (

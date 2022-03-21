@@ -227,6 +227,28 @@ app.post("/createShop/:id", (req, res) => {
   );
 });
 
+app.post("/editCount/:id",(req,res)=>
+{
+  console.log('sunny hith reddy!');
+  
+  const productid=req.params.id;
+  const quantity=req.body.quantity;
+  console.log('sunny');
+  console.log(productid);
+  console.log(quantity);
+  db.query(
+    "UPDATE Items SET itemCount=itemCount-? WHERE itemId=?",
+    [quantity,productid],
+    (err,result)=>{
+      if(err){
+        console.log(err);
+      }else{
+        res.send({success:true});
+      }
+    }
+  )
+});
+
 const addProduct = async (req, res) => {
   const userId = req.params.id;
   const itemImage = req.itemImage;
